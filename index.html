@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#642d54">
+<title>Una sorpresa para ti ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: linear-gradient(135deg,#241329,#67345e,#b45c86);
+  overflow-x: hidden;
+}
+
+.card {
+  width: 100%;
+  max-width: 390px;
+  padding: 28px 22px;
+  border-radius: 25px;
+  text-align: center;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  box-shadow: 0 15px 45px #160b1d70;
+  backdrop-filter: blur(12px);
+  position: relative;
+  z-index: 2;
+}
+
+.heart {
+  font-size: 65px;
+  animation: beat 1s infinite;
+}
+
+h1 {
+  color: #ffc2df;
+  font-size: 28px;
+}
+
+p {
+  color: #ffe4f1;
+  line-height: 1.6;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #ffc1df;
+  border-radius: 13px;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+  background: #fff2f8;
+  color: #642d54;
+  margin: 15px 0;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 13px;
+  background: #ff9dc9;
+  color: #52203e;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(.97);
+}
+
+#resultado {
+  display: none;
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #ffffff17;
+  line-height: 1.8;
+  animation: appear .8s ease;
+  white-space: pre-line;
+}
+
+.floating {
+  position: fixed;
+  bottom: -30px;
+  animation: float 7s linear infinite;
+  opacity: .7;
+  pointer-events: none;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.17); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="heart">💗</div>
+
+  <h1>Una sorpresa para ti</h1>
+
+  <p>
+    Hay algo bonito esperando por ti...
+    <br>
+    Pero primero quiero saber quién eres. ❤️
+  </p>
+
+  <input
+    id="nombre"
+    type="text"
+    placeholder="Escribe tu nombre..."
+    autocomplete="off"
+  >
+
+  <button onclick="descubrir()">
+    Abrir mi sorpresa 💕
+  </button>
+
+  <div id="resultado"></div>
+
+</div>
+
+<script>
+
+function descubrir() {
+
+  const nombre = document
+    .getElementById("nombre")
+    .value.trim().toLowerCase();
+
+  const resultado = document.getElementById("resultado");
+
+  resultado.style.display = "block";
+
+  if (nombre === "caroline" || nombre === "mineko") {
+
+    resultado.innerHTML = `
+      <div style="font-size:40px">🥹💗</div>
+      <h2 style="color:#ffc2df">Para ti, mi amor</h2>
+      <p>
+      Mi amor, a veces me quedo pensando en lo bonito que es tenerte en mi vida. ❤️
+
+      No sé cómo explicarte todo lo que siento por ti, pero quiero que sepas que eres alguien muy especial para mí.
+
+      Me encanta saber que existes, que puedo hablar contigo y que, de alguna manera, haces mis días más felices.
+
+      No prometo ser perfecto, pero sí quiero esforzarme por hacerte sentir amada, valorada y feliz.
+
+      Porque si algo tengo claro, es que no quiero dejar de construir momentos bonitos contigo.
+
+      Te quiero muchísimo, mi niña. ❤️
+      </p>
+      <div style="font-size:30px">💗🌹💗</div>
+    `;
+
+    corazones();
+
+  } else if (nombre === "") {
+
+    resultado.innerHTML = "Primero escribe tu nombre, por favor. 💕";
+
+  } else {
+
+    resultado.innerHTML = `
+      <div style="font-size:35px">🤭</div>
+      <h2>¡Ups!</h2>
+      <p>Esta sorpresa no era para ti... jajaja ❤️</p>
+    `;
+  }
+}
+
+function corazones() {
+
+  for (let i = 0; i < 18; i++) {
+
+    const heart = document.createElement("div");
+
+    heart.className = "floating";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 3 + "s";
+    heart.style.fontSize = (18 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 8000);
+  }
+}
+
+document.getElementById("nombre").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") descubrir();
+});
+
+</script>
+
+</body>
+  </html>
+  
